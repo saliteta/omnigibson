@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Stick instructions to the bottom-right corner */
+        #instructions {
+            position: fixed;
+            bottom: 60px; /* Adjust as needed */
+            right: 10px;
+            background-color: lightyellow;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Toggle button style */
+        #toggleInstructions {
+            position: fixed;
+            bottom: 110px; /* Adjust as needed */
+            right: 10px;
+            background-color: lightgray;
+            border: 1px solid #000;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Stick camera state to the bottom-right corner */
+        #cameraState {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: lightblue;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Layout images in two columns */
+        .image-container {
+            display: flex;
+            margin-top: 20px; /* Adjust as needed */
+        }
+
+        .column {
+            flex: 1;
+            padding: 10px;
+        }
+
+        figure {
+            margin: 0 0 20px 0; /* Add bottom margin to space out figures */
+        }
+
+        figcaption {
+            text-align: center;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        /* Add space between images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toggle button for instructions -->
+    <div id="toggleInstructions" onclick="toggleInstructions()">Show/Hide Instructions</div>
+
+    <!-- Instructions at bottom right -->
+    <div id="instructions">
+        <h3>Camera Controls</h3>
+        <p>Press <strong>A</strong> and <strong>D</strong> for camera rotation horizontally.</p>
+        <p>Press <strong>W</strong> and <strong>S</strong> for camera rotation vertically.</p>
+        <p>Press <strong>E</strong> and <strong>Q</strong> for camera rotation clockwise and counterclockwise.</p>
+    </div>
+
+    <!-- Camera state at bottom right -->
+    <h2 id="cameraState">Camera State: Idle</h2>
+
+    <!-- Images in two columns -->
+    <div class="image-container">
+        <div class="column">
+            <figure>
+                <img id="camImage" src="/view_rgb" alt="Camera Image" />
+                <figcaption>RGB</figcaption>
+            </figure>
+            <figure>
+                <img id="depthImage" src="/view_depth" alt="Depth Image" />
+                <figcaption>Depth</figcaption>
+            </figure>
+        </div>
+        <div class="column">
+            <figure>
+                <img id="bevImage" src="/view_bev" alt="BEV Map" />
+                <figcaption>BEV</figcaption>
+            </figure>
+        </div>
+    </div>
+
+    <!-- External script -->
+    <script src="/static/js/listen_input.js"></script>
+
+    <script>
+        // Function to toggle instructions visibility
+        function toggleInstructions() {
+            var instructions = document.getElementById("instructions");
+            if (instructions.style.display === "none") {
+                instructions.style.display = "block";
+            } else {
+                instructions.style.display = "none";
+            }
+        }
+
+        // Example: keeping float precision to 2 digits
+        function formatFloat(floatNumber) {
+            return floatNumber.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
