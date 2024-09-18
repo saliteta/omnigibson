@@ -8,11 +8,11 @@ from io import BytesIO
 import numpy as np
 import cv2
 
-from utils.rotation_utils import rotate_quaternion
+from rotation_utils import rotate_quaternion
 import numpy as np
 import torch
 from website.helper import depth_to_point_cloud, transform_point_cloud
-from website.config import cfg, move, rotation, start_pos, fx, fy, cx, cy
+from website.config import cfg, move, rotation, start_pos
 
 
 
