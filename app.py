@@ -11,8 +11,8 @@ import cv2
 from rotation_utils import rotate_quaternion
 import numpy as np
 import torch
-from website.helper import depth_to_point_cloud, transform_point_cloud
-from website.config import cfg, move, rotation, start_pos
+from helper import depth_to_point_cloud, transform_point_cloud
+from config import cfg, move, rotation, start_pos
 
 
 
@@ -102,14 +102,14 @@ def simulation_loop():
             with image_lock:
                 current_rgb_image = rgb.copy()
                 current_depth_image = depth.copy()
-                np.savez_compressed(
-                    f"depth/depth_{count}",
-                    {
-                        'depth': current_depth_image,
-                        'pose': pose,
-                        'orientation': orientation
-                    }
-                )
+                #np.savez_compressed(
+                #    f"depth/depth_{count}",
+                #    {
+                #        'depth': current_depth_image,
+                #        'pose': pose,
+                #        'orientation': orientation
+                #    }
+                #)
                 count += 1
                 camera_points = depth_to_point_cloud(current_depth_image)
                 world_points = transform_point_cloud(points=camera_points, pose = pose, orientation=orientation)

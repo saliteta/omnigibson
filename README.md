@@ -21,6 +21,15 @@ cfg["scene"] = {
 ```
 
 ## Simple result
-
 To check our result, one can visit the following youtube website: 
 [Result](https://youtu.be/_gSVPduxE20)
+![Traversiong By Human](assets/UI.png)
+
+## Automation Exploration Routing
+We also implement a Automation exploration routing algorithm so that we can collect RGB data automatically
+We use voronoi graph to generate key points that is most valuable
+![alt text](assets/exploration.png)
+To use our method, run:
+```
+python way_points.py
+```
